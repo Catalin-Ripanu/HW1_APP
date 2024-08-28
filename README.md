@@ -1,6 +1,6 @@
 # HW1_APP
 
-A project with consists of measuring the performance for 3 parallel solutions (Pthreads, OpenMP and MPI) which implements the K-Means Clustering Algorithm and comparing them with the serial one. 
+A project which consists of measuring the performance for 3 parallel implementations (Pthreads, OpenMP and MPI) of **K-Means Clustering Algorithm** and comparing them with the serial one. 
 
 ## First Week:</br>
 
