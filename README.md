@@ -1,23 +1,16 @@
-# K-Means Clustering Algorithm
+# HW1_APP
 
+## First Week:</br>
 
-### Echipa:<br />
-Marin Eduard-Constantin 341C3<br />
-Coman Calin-Alexandru 341C3<br />
-Rîpanu Cătălin-Alexandru 341C3
-
-### Asistent:<br />
-Ouatu Andrei-Catalin
-
-## Saptamana 1:</br>
-Am incarcat codul serial si am efectuat o analiza de performanta pentru acesta, cu k = 40, n = 21000 (numarul de puncte).
-In poza de mai jos putem observa, in primul rand, componentele sistemului de pe care s-au facut testele:
+A performance analysis was made for the serial code which consisted of having k = 40 clusters and n = 21000 data points.
+In the picture below it can be observed the system compontes on which these tests were made.
 
 <p align="center">
     <img src="photos/platform_info.png" alt="image" width="70%" height="auto">
 </p>
 
-Timpul de rulare obtinut este de aproximativ 45s:
+The execution time it's approximately 45s:
+
 
 <p align="center">
     <img src="photos/elapsed_time.png" alt="image" width="70%" height="auto">
@@ -27,7 +20,7 @@ Timpul de rulare obtinut este de aproximativ 45s:
     <img src="photos/detailed_info.png" alt="image" width="70%" height="auto">
 </p>
 
-Codul ruleaza pe un singur thread, dupa cum se observa din histograma:
+This code runs in the context of a single thread within the current process:
 
 <p align="center">
     <img src="photos/Screenshot 2023-11-21 103210.png" alt="image" width="70%" height="auto">
@@ -43,9 +36,9 @@ Codul ruleaza pe un singur thread, dupa cum se observa din histograma:
     <img src="photos/nehalem_ms.png" alt="image" width="70%" height="auto">
 </p>
 
-## Saptamana 2:</br>
+## Second Week:</br>
 
-Am rulat codul serial pe un set mai mare de date (numar de clustere = 1000, numar de puncte = 100000) pentru a scoate in evidenta speedup-ul:
+The number of clusters and data points were increased (k = 1000 and n = 100000) to evidence the speedup:
 
 <p align="center">
     <img src="photos/vtune_serial/top-hotspots.png" alt="image" width="70%" height="auto">
@@ -59,7 +52,7 @@ Am rulat codul serial pe un set mai mare de date (numar de clustere = 1000, numa
     <img src="photos/vtune_serial/topdown-tree.png" alt="image" width="70%" height="auto">
 </p>
 
-Profiling-ul pentru OpenMP:
+The profiling for OpenMP:
 
 <p align="center">
     <img src="photos/vtune_openmp/top-hotspots.png" alt="image" width="70%" height="auto">
@@ -73,11 +66,9 @@ Profiling-ul pentru OpenMP:
     <img src="photos/vtune_openmp/topdown-tree.png" alt="image" width="70%" height="auto">
 </p>
 
+## Third Week:</br>
 
-
-## Saptamana 3:</br>
-
-### Analiza pe cluster
+### Cluster Analysis
 
 
 **Serial**
@@ -105,15 +96,13 @@ Pthreads - Haswell
 | 50_000 x 1000   | 44.689        |25.043 | 14.043 | 11.878 | 5.128 |
 |50_000 x 500| 23.754 | 12.893 | 7.601 | 3.73 | 2.653 |
 
-
-Rezultatele rularii Pthreads pe clusterul **Nehalem**:
+The Pthreads execution results using **Nehalem** cluser queue:
 
 <p align="center">
     <img src="photos/dotted_pthread_nehalem.png" alt="image" width="70%" height="auto">
 </p>
 
-
-Rezultatele rularii Pthreads pe clusterul **Haswell**:
+The Pthreads execution results using **Haswell** cluser queue:
 
 <p align="center">
     <img src="photos/dotted_pthread_haswell.png" alt="image" width="70%" height="auto">
@@ -161,34 +150,31 @@ OpenMP (schedule static) - Haswell
 | ----------- | ----------- | -----------| -----------| -----------| -----------|
 | 1000      | 104.413 | 61.315 | 32.389 | 19.29 | 10.117 |
 
+It can be observed the idea of having similitudes when speaking about **schedule static**, **schedule dynamic** and **schedule auto** (with BATCH_SIZE=10) directives using **Haswell**.
 
-Observam ca (pe Haswell) directiva **schedule static** este foarte asemanatoare cu **schedule dynamic** (cu BATCH_SIZE=10) si **schedule auto**.
-
-
-Rezultatele rularii OpenMP pe clusterul **Nehalem**:
+The OpenMP execution results using **Nehalem** cluser queue:
 
 <p align="center">
     <img src="photos/cluster_times/dynamic-nehalem.png" alt="image" width="70%" height="auto">
 </p>
 
-Zoom pe zona de interes:
+Making Zoom on the area of interest:
 
 <p align="center">
     <img src="photos/dynamic-nehalem_zoom_in.png" alt="image" width="70%" height="auto">
 </p>
 
-Rezultatele rularii OpenMP pe clusterul **Haswell**:
+The OpenMP execution results using **Haswell** cluser queue:
 
 <p align="center">
     <img src="photos/cluster_times/dynamic-haswell.png" alt="image" width="70%" height="auto">
 </p>
 
-Zoom pe zona de interes:
+Making Zoom on the area of interest:
 
 <p align="center">
     <img src="photos/dynamic-haswell_zoom_in.png" alt="image" width="70%" height="auto">
 </p>
-
 
 **MPI**
 
@@ -209,27 +195,23 @@ MPI - Haswell
 | 50_000 x 500        | 13.410 | 8.011 | 5.443 | 4.501 | 4.631 | 8.326 | 11.119 | ? | 35.298 |
 
 
+## Fourth Week:</br>
 
-## Saptamana 3:</br>
+### Adding the implementation of MPI and doing profiling on cluster for Pthread and OpenMP
 
-### Adaugare implementare MPI si realizare profiling pe cluster pentru Pthread si OpenMP
-
-
-Rezultatele rularii **MPI** pe clusterul **Nehalem**:
+The MPI execution results using **Nehalem** cluser queue:
 
 <p align="center">
     <img src="photos/cluster_times/mpi-nehalem.png" alt="image" width="70%" height="auto">
 </p>
 
-
-Rezultatele rularii **MPI** pe clusterul **Haswell**:
+The MPI execution results using **Haswell** cluser queue:
 
 <p align="center">
     <img src="photos/cluster_times/mpi-haswell.png" alt="image" width="70%" height="auto">
 </p>
 
-
-Rularea MPI cu ilustratie pe numar mai mic de procese:
+Execution of MPI using a smaller number of processes:
 
 <p align="center">
     <img src="photos/dotted_mpi_nehalem.png" alt="image" width="70%" height="auto">
@@ -239,32 +221,31 @@ Rularea MPI cu ilustratie pe numar mai mic de procese:
     <img src="photos/dotted_mpi_haswell.png" alt="image" width="70%" height="auto">
 </p>
 
-
-Rezultatele rularii cu Vtune pentru **Pthread**:
+The Vtune execution results for **Pthreads**:
 
 <p align="center">
     <img src="photos/cluster_profiling/pthreads_performance_snapshot.png" alt="image" width="70%" height="auto">
 </p>
 
-La hotspots observam ca functia de distanta euclidiana este cea mai pregnanta.
+At hotspots it can be observed that the euclidian distance function is the most CPU clock / time consuming:
 
 <p align="center">
     <img src="photos/cluster_profiling/pthreads_hotspots.png" alt="image" width="70%" height="auto">
 </p>
 
-Rezultatele rularii cu Vtune pentru **OpenMP**:
+The Vtune execution results for **OpenMP**:
 
 <p align="center">
     <img src="photos/cluster_profiling/openmp_performance_snapshot.png" alt="image" width="70%" height="auto">
 </p>
 
-Pentru analiza de hotspots de la OpenMP se observa acelasi lucru, si anume ca functia de distanta euclidiana ocupa cel mai mult din CPU Time.
+At hotspots it can be observed that the euclidian distance function is the most CPU clock / time consuming for **OpenMP** too:
 
 <p align="center">
     <img src="photos/cluster_profiling/openmp_hotspots.png" alt="image" width="70%" height="auto">
 </p>
 
-Se pot observa si diferentele dintre politicele de scheduling din cadrul **OpenMP**, cele mai bune fiind Auto si Static:
+It can be also observed the differences between **OpenMP** scheduling policies, Auto and Static ones being the most better:
 
 <p align="center">
     <img src="photos/barcharts/barchart_scheduling_types.png" alt="image" width="70%" height="auto">
@@ -290,3 +271,5 @@ Se pot observa si diferentele dintre politicele de scheduling din cadrul **OpenM
 <p align="center">
     <img src="photos/efficiencies/haswell_cluster_efficiency.png" alt="image" width="70%" height="auto">
 </p>
+
+Special thanks to Marin Eduard-Constantin and Coman Calin-Alexandru (my classmates) for their creative ideas and wonderful support while making this project.
